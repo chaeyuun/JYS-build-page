@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menubartest from '../components/Menubar';
+import Menubartest from '../../components/Menubar';
 
 const Findid = () => {
     return (

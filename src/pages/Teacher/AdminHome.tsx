@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menubar from '../components/Menubar';
+import Menubar from '../../components/Menubar';
 import {useNavigate} from 'react-router-dom';
 
 const Detailsvg = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Menubar from '../components/Menubar';
-import axiosInstance from '../api/API_Server';
+import Menubar from '../../components/Menubar';
+import axiosInstance from '../../api/API_Server';
 import { useNavigate, Link} from "react-router-dom";
 
 const RentalStatus = () => {
