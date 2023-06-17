@@ -4,6 +4,8 @@ import Menubar from '../components/Menubar'
 import Productlist from '../Productlist.json'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from '../api/API_Server';
+
 
 const Rental = () => {
     const [studentID, setstudentID] = useState("");
@@ -22,6 +24,8 @@ const Rental = () => {
     let [Product, setProduct] = useState(Productlist);
     const [border1, setborder1] = useState('1px solid #B7B7B7');
     let navigate = useNavigate();
+    const [id, setid] = useState(sessionStorage.getItem('userId'));
+    const [job, setjob] = useState(sessionStorage.getItem('job'));
 
     useEffect(() => {
         if (phonenum.length === 10) {
@@ -32,24 +36,20 @@ const Rental = () => {
         }
     }, [phonenum]);
 
-    // const _Submit = () => {
-    //     alert("전송되었습니다")
-    //     axios.post("http://www.zena.co.kr/api/register", {
-    //         cart,
-    //         name,
-    //         studentID,
-    //         person,
-    //         period1,
-    //         period2,
-    //         meet1,
-    //         meet2,
-    //         phonenum,
-    //         purpose
-    //     })
-    //     .then(() => (alert("전송되었습니다!")))
-    //     .catch();
-    //     console.log(form);
-    // };
+    useEffect(() => {
+        console.log(id);
+        if (id) {
+            axiosInstance
+            .post("/profile", { id: id, job: job })
+            .then((response) => {
+                console.log(response.data);
+                setName(response.data.firstName+response.data.lastName)
+                setphonenum(response.data.phoneNumber)
+                setstudentID(response.data.studentID)
+            })
+            .catch((error) => console.log(error));
+        }
+        }, [id, job]);
 
     function itemExistsInCart(itemId: string) {
         return popupcart.some((item:any) => item.id === itemId);
@@ -95,9 +95,23 @@ const Rental = () => {
         <_Writewrap 
             onSubmit={(event: any) => {
                 event.preventDefault();
-                
-                axios.post("http://www.zena.co.kr/api/EquipmentRental/RentalForm", {
-                    id: "2f98f96b-686f-466b-8a24-7899e19d3efb",
+                console.log({
+                    id: id,
+                    studentID: studentID,
+                    cart: cart,
+                    firstName: name.substring(0, 1),
+                    lastName: name.substring(1, 3),
+                    person: person,
+                    period1: period1,
+                    period2: period2,
+                    meet1: meet1,
+                    meet2: meet2,
+                    phonenum: phonenum,
+                    purpose: purpose
+                }
+                )
+                axios.post("", {
+                    id: id,
                     studentID: studentID,
                     cart: cart,
                     firstName: name.substring(0, 1),
@@ -125,7 +139,7 @@ const Rental = () => {
                 })
                 .catch(()=>{alert("실패")})
                 console.log({
-                    id: "2f98f96b-686f-466b-8a24-7899e19d3efb",
+                    id: id,
                     studentID: studentID,
                     cart: cart,
                     firstName: name.substring(0, 1),
@@ -167,20 +181,20 @@ const Rental = () => {
 {/* ---------------------------------신청서작성------------------------------------ */}
             
                 <_Subtext>신청서 작성</_Subtext>
-                <_Inputtitle><Label>이름</Label><_Input onChange={(event) => {
+                <_Inputtitle><Label>이름</Label><_Input value={name} onChange={(event) => {
                     setName(event.target.value);
                     
                     }}
                     // required
                     type="text"
-                    placeholder='이름을 입력해주세요.' width={"200px"}/></_Inputtitle>
-                <_Inputtitle><Label>학번</Label><_Input 
+                    placeholder='이름을 입력해주세요.' width={"200px"} disabled/></_Inputtitle>
+                <_Inputtitle><Label>학번</Label><_Input value={studentID}
                 onChange={(event) => {
                     setstudentID(event.target.value);
                     
                     }}
                     type="text"
-                    placeholder='학번을 입력해주세요.' width={"200px"}/></_Inputtitle>
+                    placeholder='학번을 입력해주세요.' width={"200px"} disabled/></_Inputtitle>
                 <_Inputtitle><Label>이용인원</Label><_Input 
                 onChange={(event) => {setperson(event.target.value);
                     
@@ -228,7 +242,7 @@ const Rental = () => {
                     </_Dropdownwrap>
                 </_Inputtitle>
                 </Rentaldate>
-                <_Inputtitle><Label>연락처</Label><_Input 
+                <_Inputtitle><Label>연락처</Label><_Input
                     value={phonenum}
                     onChange={(event) => {setphonenum(event.target.value);
                         
@@ -237,7 +251,7 @@ const Rental = () => {
                         setphonenum(event.target.value);
                         }
                     }} 
-                    required type="tel" placeholder="01012345678" maxLength={13}></_Input></_Inputtitle>
+                    type="tel" placeholder="01012345678" maxLength={13} disabled></_Input></_Inputtitle>
                 <_Input2title>이용목적 및 이용내역
                     <_Input2wrap>
                         <_Subinputtitle>※사용 용도, 작품 내용 등을 구체적으로 적어주세요.</_Subinputtitle>

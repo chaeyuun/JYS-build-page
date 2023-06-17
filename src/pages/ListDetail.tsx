@@ -18,7 +18,7 @@ const ListDetail = () => {
         axiosInstance.post("/EquipmentRental/RentalInquiry", {id}).then((response) => {
             console.log(response.data.data);
             setProduct(response.data.data);
-            setStudentID(response.data.id);
+            setStudentID(response.data.data.id);
         })
         .catch((error) => console.log(error));
     },[]);
@@ -26,8 +26,8 @@ const ListDetail = () => {
     useEffect(() => {
         if (job !== "teacher") {
             setTimeout(() => {
-                alert("관리자 로그인이 필요합니다.");
-                navigate("/home");
+                alert("관리자 로그인이 필요합.");
+                navigate(-1);
             }, 0);
         }
         }, []);
@@ -54,34 +54,36 @@ const ListDetail = () => {
                 <_SubmitBtn bgcolor="#01d705" color="#ffffff" 
                     onClick={()=>{
                         setAccept(true)
-                        alert("수락되었습니다.")
-                        console.log(Accept)
                         axiosInstance.post('EquipmentRental/AcceptorButton', {
                             studentID: StudentID,
                             teacherID: ID,
                             buttonType:'accept',
-                            methodName:""
+                            methodName:"rentalForm"
                         })
                         .then(response => {
-                            console.log(response.data.massage); 
+                            console.log(response.data); 
+                            alert(response.data.massage);
+                            navigate("/rentallist");
                         })
                         .catch(error => {
                             console.error(error);
+                            alert("에러");
                         });
                     }}>수락</_SubmitBtn>
                 <_SubmitBtn bgcolor="#f02a2b" color="#ffffff"
                     onClick={()=>{
                         setAccept(false)
-                        alert("거절되었습니다.")
                         console.log(Accept)
                         axiosInstance.post('EquipmentRental/AcceptorButton', {
                             studentID: StudentID,
                             teacherID: ID,
                             buttonType:'decline',
-                            methodName:""
+                            methodName:"rentalForm"
                         })
                         .then(response => {
                             console.log(response.data);
+                            alert("거절되었습니다.");
+                            navigate("/rentallist");
                         })
                         .catch(error => {
                             console.error(error);

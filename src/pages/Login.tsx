@@ -32,35 +32,6 @@ const UserLogin = () => {
         setInputPw(e.target.value)
     }
 
-    // login 버튼 클릭 이벤트
-    // const llogin = () => {
-
-    //     axios.post("http://www.zena.co.kr/api/login", {
-    //             email : inputId,
-    //             password : inputPw,
-    //             job : job
-    //         })
-    //         .then((res) => {
-    //             if (res.status == 200) {
-    //                 navigate("/")
-    //                 alert(res.status)
-    //             } else if (res.status == 202) {
-    //                 //경고 => 메시지 res.data.message
-    //                 alert(res.status)
-    //             } else {
-    //                 //예외
-    //                 alert(res.status)
-    //             }
-    //         })
-    //         .catch(()=>{alert("아이디 비번이 틀렸습니다")})
-        
-    //     console.log({
-    //         email : inputId,
-    //         password : inputPw,
-    //         job : job
-    //     })
-    // }
-    
     let navigate = useNavigate();
     const [color1, setColor1] = useState('#1E00D3');
     const [color2, setColor2] = useState('#B7B7B7');
@@ -102,7 +73,7 @@ const UserLogin = () => {
                             navigate("/")
                             alert(res.data.message)
                             if(res.data.job === 'student') {
-                                navigate("/rental")
+                                navigate("/home")
                             }
                             else if(res.data.job === "teacher") {
                                 navigate("/rentallist")

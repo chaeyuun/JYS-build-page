@@ -14,6 +14,8 @@ const RentalList: React.FC<ClockProps> = () => {
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
     const [job, setjob] = useState(sessionStorage.getItem('job'));
 
+    
+
     useEffect(() => {
     setCurrentDate(new Date());
     }, []);
@@ -33,7 +35,7 @@ const RentalList: React.FC<ClockProps> = () => {
     if (job !== "teacher") {
         setTimeout(() => {
             alert("관리자 로그인이 필요합니다.");
-            navigate("/home");
+            navigate(-1);
         }, 0);
     }
     }, []);
