@@ -4,7 +4,7 @@ import Menubar from '../../components/Menubar'
 import Productlist from '../../Productlist.json'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import axiosInstance from '../api/API_Server';
+import axiosInstance from '../../api/API_Server';
 
 
 const Rental = () => {
