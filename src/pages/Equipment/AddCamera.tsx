@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Menubar from '../components/Menubar'
+import Menubar from '../../components/Menubar'
 import styled from 'styled-components';
 import axios from "axios";
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import Menubar from '../components/Menubar'
-import Productlist from '../Productlist.json'
+import Menubar from '../../components/Menubar'
+import Productlist from '../../Productlist.json'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import axiosInstance from '../api/API_Server';

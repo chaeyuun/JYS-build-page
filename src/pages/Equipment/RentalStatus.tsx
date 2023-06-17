@@ -1,8 +1,16 @@
+<<<<<<< HEAD:src/pages/RentalStatus.tsx
 import React, { useState, useEffect } from "react";
 import axiosInstance from '../api/API_Server'; // Replace with your axios instance
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Menubar from '../components/Menubar'
+=======
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Menubar from '../../components/Menubar';
+import axiosInstance from '../../api/API_Server';
+import { useNavigate, Link} from "react-router-dom";
+>>>>>>> main:src/pages/Equipment/RentalStatus.tsx
 
 interface RentalDataItem {
 created_at: any;

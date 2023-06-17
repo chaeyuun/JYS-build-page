@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Menubar from '../components/Menubar'
+import Menubar from '../../components/Menubar'
 import { useParams, useNavigate} from 'react-router-dom';
-import axiosInstance from '../api/API_Server';
+import axiosInstance from '../../api/API_Server';
 
 const ListDetail = () => {
     let navigate = useNavigate();

@@ -218,8 +218,8 @@ const _Form = styled.div`
 
 const _Jobbtn = styled.button`
     padding: 5px 20px 5px 20px;
-    margin: 0px 50px 0px 50px;
-    width: 180px;
+    margin: 0px 30px 0px 30px;
+    width: 200px;
     height: 47px;
 
     color: #b7b7b7;
@@ -272,7 +272,7 @@ const _FindWrap = styled.div`
 `;
 
 const _Find = styled.button`
-    width: 100px;
+    width: 120px;
     height: 47px;
     background: none;
     color: #666666;

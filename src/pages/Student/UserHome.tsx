@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Menubar from '../components/Menubar';
+import Menubar from '../../components/Menubar';
 import {useNavigate} from 'react-router-dom';
-import axiosInstance from '../api/API_Server';
+import axiosInstance from '../../api/API_Server';
 
 const Detailsvg = () => {
 return (

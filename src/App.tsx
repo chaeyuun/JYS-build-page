@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AdminHome from './pages/AdminHome'
-import UserHome from './pages/UserHome'
+import AdminHome from './pages/Teacher/AdminHome'
+import UserHome from './pages/Student/UserHome'
 import UserLogin from './pages/Login';
 import Signup from './pages/Signup';
-import Findid from './pages/Findid';
-import Findpw from './pages/Findpw';
-import Rental from './pages/Rental';
-import ListDetail from './pages/ListDetail'
-import RentalList from './pages/RentalList'
+import Findid from './pages/FindAccount/Findid';
+import Findpw from './pages/FindAccount/Findpw';
+import Rental from './pages/Equipment/Rental';
+import ListDetail from './pages/Equipment/ListDetail'
+import RentalList from './pages/Teacher/RentalList'
 import Test from './pages/Test'
-import AddCamera from './pages/AddCamera'
+import AddCamera from './pages/Equipment/AddCamera'
 import Notlogin from './pages/Notlogin'
-import RentalStatus from './pages/RentalStatus'
+import RentalStatus from './pages/Equipment/RentalStatus'
 
 
 function App() {

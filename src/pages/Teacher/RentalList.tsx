@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Menubar from '../components/Menubar'
+import Menubar from '../../components/Menubar'
 import axios from "axios";
 import { useNavigate, Link} from "react-router-dom";
-import axiosInstance from '../api/API_Server';
+import axiosInstance from '../../api/API_Server';
 
 interface ClockProps {}
 
