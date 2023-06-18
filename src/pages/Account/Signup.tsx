@@ -7,7 +7,8 @@ const Signup = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [number, setNumber] = useState("");
-  const [name, setName] = useState("");
+  const [firstname, setfirstName] = useState("");
+  const [lastname, setlastName] = useState("");
   const [form, setform]: any = useState('');
   const [job, setJob] = useState("student");
   const [tel, setTel] = useState("");
@@ -93,8 +94,8 @@ const Signup = () => {
             password: pw, //비밀번호
             phoneNumber: tel, //전화번호
             studentID: number, //학번
-            firstName: name.substring(0, 1), //성
-            lastName: name.substring(1, 3) //이름
+            firstName: firstname, //성
+            lastName: lastname //이름
           })
           .then((res: {
             data: any; status: number; 
@@ -118,8 +119,8 @@ const Signup = () => {
           password: pw, //비밀번호
           phoneNumber: tel, //전화번호
           studentID: number, //학번
-          firstName: name.substring(0, 1), //성
-          lastName: name.substring(1, 2) //이름
+          firstName: firstname, //성
+          lastName: lastname //이름
         });
         }}
       >
@@ -214,18 +215,32 @@ const Signup = () => {
             />
           </_InputWrap>
           )}
+          <Namewrap>
+          <_InputWrap>
+            <_Label>성</_Label>
+            <br />
+            <Nameinput
+              value={firstname}
+              onChange={(event) => {setfirstName(event.target.value);}}
+              type="text"
+              placeholder="성을 입력해 주세요."
+              minLength={0}
+              maxLength={2}
+            />
+          </_InputWrap>
           <_InputWrap>
             <_Label>이름</_Label>
-            <br />
-            <_Input
-              value={name}
-              onChange={(event) => {setName(event.target.value);}}
+            <br/>
+            <Nameinput
+              value={lastname}
+              onChange={(event) => {setlastName(event.target.value);}}
               type="text"
               placeholder="이름을 입력해 주세요."
-              minLength={2}
+              minLength={0}
               maxLength={5}
             />
           </_InputWrap>
+          </Namewrap>
           <_SignUpBtnWrap>
             <_SignUpBtn type="submit">
               가입하기
@@ -398,3 +413,25 @@ const _Logowrap = styled.div`
     margin-left: 87%;
     margin-bottom: -19px;
 `;
+
+const Namewrap = styled.div`
+  display: flex;
+  width: 440px;
+  margin: 0 auto;
+`
+
+const Nameinput = styled.input`
+  width: 180px;
+  height: 50px;
+  margin-top: 3px;
+  font-weight: bold;
+  border: 1px solid #e5e5e5;
+  :focus {
+    border: 1.8px solid blue;
+  }
+  border-radius: 12px;
+  padding-left: 10px;
+
+  border-color: gray;
+  outline: none;
+`
