@@ -87,7 +87,6 @@ return (
 
 export default RentalStatus;
 
-
 const Bar = styled.div`
     width: 100vw;
     height: 50px;

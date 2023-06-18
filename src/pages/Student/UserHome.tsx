@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Menubar from '../../components/Menubar';
 import {useNavigate} from 'react-router-dom';
 import axiosInstance from '../../api/API_Server';
+import Channeltalk from '../../api/Channeltalk';
 
 const Detailsvg = () => {
 return (
@@ -15,6 +16,39 @@ return (
 const Home = () => {
     let navigate = useNavigate();
     const [meal, setmeal] = useState("");
+    const [phonenum, setphonenum] = useState("");
+    const [Name, setName] = useState("");
+    const [email, setemail] = useState("");
+    const [studentID, setstudentID] = useState("");
+    const [ID, setID] = useState(sessionStorage.getItem('userId'));
+    const [job, setjob] = useState(sessionStorage.getItem('job'));
+
+    useEffect(() => {
+        if (ID) {
+            axiosInstance
+            .post("/profile", { id: ID, job: job })
+            .then((response) => {
+                console.log(response.data);
+                setName(response.data.firstName+response.data.lastName)
+                setphonenum(response.data.phoneNumber)
+                setstudentID(response.data.studentID)
+                setemail(response.data.email)
+            })
+            .catch((error) => console.log(error));
+        }
+        }, [ID, job]);
+
+    Channeltalk.loadScript();
+
+    Channeltalk.boot({
+        "pluginKey": "aac0f50c-39b0-4629-939e-a5bc11441405", // fill your plugin key
+        "memberId": ID, // fill user's member id
+        "profile": { // fill user's profile
+          "name": Name, // fill user's name
+          "mobileNumber": phonenum, // fill user's mobile number
+          "studentID": studentID, // fill user's landline number
+          "email": email, // fill user's landline number
+    }});
 
     useEffect(() => {
         axiosInstance.post("/meal")
@@ -58,7 +92,7 @@ const Home = () => {
         <Detail>더보기 <Detailsvg/></Detail>
         </Headerwrap>
         <Msgwrap>
-        <pre>{meal}</pre>
+            {meal !== undefined ? <pre>{meal}</pre> : "데이터를 불러올수없음"}
         </Msgwrap>
     </_Interface>
     <_Interface>
