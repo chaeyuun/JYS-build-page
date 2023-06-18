@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AdminHome from './pages/Teacher/AdminHome'
 import UserHome from './pages/Student/UserHome'
-import UserLogin from './pages/Login';
-import Signup from './pages/Signup';
-import Findid from './pages/FindAccount/Findid';
-import Findpw from './pages/FindAccount/Findpw';
+import UserLogin from './pages/Account/Login';
+import Signup from './pages/Account/Signup';
+import Findid from './pages/Account/Findid';
+import Findpw from './pages/Account/Findpw';
 import Rental from './pages/Equipment/Rental';
-import ListDetail from './pages/Equipment/ListDetail'
+import ListDetail from './pages/Teacher/ListDetail'
 import RentalList from './pages/Teacher/RentalList'
 import Test from './pages/Test'
 import AddCamera from './pages/Equipment/AddCamera'

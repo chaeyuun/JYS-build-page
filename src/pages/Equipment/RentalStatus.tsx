@@ -14,7 +14,7 @@ type: number;
 const RentalStatus: React.FC = () => {
 const [rentalData, setRentalData] = useState<RentalDataItem[]>([]);
 const [type, setType] = useState<number>(0);
-const [ID, setID] = useState(sessionStorage.getItem('userId'));
+const [ID, setID] = useState<string | null>(sessionStorage.getItem('userId'));
 
 
 useEffect(() => {
@@ -40,11 +40,12 @@ const getStatusLabelColor = (type: number): string => {
     }
 };
 
+console.log(ID)
 return (
     <>
     <Menubar/>
     <Bar>신청내역</Bar>
-    {rentalData.map((item) => (
+    {rentalData.filter((item) => ID !== null && item.id.toString() === ID).map((item) => (
         <div key={item.id}>
     <_Graybar>
         <div>날짜</div>
@@ -55,11 +56,11 @@ return (
         <_Link key={item.id} to={``}>
         <Listwrap key={item.id}>
         <_List>{item.created_at.substring(5, 16).replace(/-/g, '/').replace(/T/g, ' ')}</_List>
-        <_List>{"기자재대여신청"}</_List>
+        <_List>{item.type === 2 || item.type === 3 ? "기자재대여신청" : item.type === 4 ? "기자재반납신청" : ""}</_List>
         <Statuswrap>
-            <_Liststatus style={{ color: getStatusLabelColor(type) }}>
-            <Dot style={{ backgroundColor: getStatusLabelColor(type) }}/>
-            {item.type === 2 ? "대기중" : item.type === 3 ? "수락됨" : ""}
+            <_Liststatus style={{ color: getStatusLabelColor(item.type) }}>
+            <Dot style={{ backgroundColor: getStatusLabelColor(item.type) }}/>
+            {item.type === 2 || item.type === 4? "대기중" : item.type === 3 ? "수락됨" : ""}
             </_Liststatus>
         </Statuswrap>
         {item.type === 2||item.type === 4 ? "" : item.type === 3 ? (<_returnwrap><_returnbtn

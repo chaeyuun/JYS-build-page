@@ -16,7 +16,6 @@ const ResponsiveNavbar = () => {
         window.location.reload();
     }
     useEffect(() => {
-    console.log(ID);
     if (ID) {
         axiosInstance
         .post("/profile", { id: ID, job: job })
