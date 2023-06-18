@@ -47,17 +47,19 @@ const RentalList: React.FC<ClockProps> = () => {
     return (
         <>
         <Menubar />
-        <Bar>신청내역</Bar>
+        <Bar>기자재 신청내역</Bar>
         <_Graybar>
             <div>학번</div>
             <div>이름</div>
+            <div>상태</div>
             <div>일시</div>
         </_Graybar>
-        {rentaldata.map((item: any) => (
+        {rentaldata.filter((item: any) => item.type === 2 || item.type === 4).map((item: any) => (
             <_Link key={item.id} to={`/listdetail/${item.index}`}>
             <Listwrap>
                 <_List>{item.studentID}</_List>
                 <_List>{item.firstName + item.lastName}</_List>
+                <_List>{item.type === 2 || item.type === 3 ? "대여신청" : item.type === 4 ? "반납신청" : ""}</_List>
                 <_List>{item.created_at.substring(5, 16).replace(/-/g, '/').replace(/T/g, ' ')}</_List>
             </Listwrap>
             </_Link>

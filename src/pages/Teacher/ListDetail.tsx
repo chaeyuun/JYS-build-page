@@ -57,12 +57,11 @@ const ListDetail = () => {
                         axiosInstance.post('EquipmentRental/AcceptorButton', {
                             studentID: StudentID,
                             teacherID: ID,
-                            buttonType:'accept',
-                            methodName:"rentalForm"
+                            buttonType: "accept",
+                            methodName: product.type === 2 ? 'rentalForm' : product.type === 4 ? 'rentalReturn' : "undefind"
                         })
                         .then(response => {
-                            console.log(response.data); 
-                            alert(response.data.massage);
+                            alert("수락되었습니다");
                             navigate("/rentallist");
                         })
                         .catch(error => {
@@ -78,11 +77,11 @@ const ListDetail = () => {
                             studentID: StudentID,
                             teacherID: ID,
                             buttonType:'decline',
-                            methodName:"rentalForm"
+                            methodName: product.type === 2 ? 'rentalForm' : product.type === 4 ? 'rentalReturn' : "undefind"
                         })
                         .then(response => {
                             console.log(response.data);
-                            alert("거절되었습니다.");
+                            alert("거절되었습니다");
                             navigate("/rentallist");
                         })
                         .catch(error => {
