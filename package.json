@@ -1,5 +1,4 @@
 {
-  "homepage": "http://chaeyuun.github.io/JYS-build-page",
   "name": "ysfront",
   "version": "0.1.0",
   "private": true,
@@ -27,7 +26,7 @@
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://5807-211-206-46-150.jp.ngrok.io",
+  "homepage": "http://chaeyuun.github.io/JYS-build-page",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
