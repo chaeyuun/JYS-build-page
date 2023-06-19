@@ -17,7 +17,7 @@ import RentalStatus from './pages/Equipment/RentalStatus'
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path="/home" element={<UserHome />} />
       <Route path="/admin" element={<AdminHome />} />
