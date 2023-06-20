@@ -59,41 +59,45 @@ const UserLogin = () => {
                     //Rhcbrjfnfmfskffu
                 });
 
-                axios.post("http://www.zena.co.kr/api/login", {
-                    accountID : inputId,
-                    password : inputPw,
-                    job : job
-                })
-                    .then((res: {
-                        data: any; status: number; 
-                    }) => {
-                        sessionStorage.setItem('userId', res.data.id);
-                        sessionStorage.setItem('job', res.data.job);
-                        if (res.status == 200) {
-                            navigate("/")
-                            alert(res.data.message)
-                            if(res.data.job === 'student') {
-                                navigate("/home")
-                            }
-                            else if(res.data.job === "teacher") {
-                                navigate("/rentallist")
-                            }
-                        } else {
-                            //예외
-                            alert(res.data.message)
-                        }
+                try {
+                    axios.post("http://www.zena.co.kr/api/login", {
+                        accountID : inputId,
+                        password : inputPw,
+                        job : job
                     })
-                    .catch((error)=>{
-                        const res = error.response
-                        if (res.status === 400) {
-                            alert(res.data.error + res.data.errorDescription)
-                        }else if (res.status === 500) {
-                            alert("에러" + "로그인에 실패했습니다")
-                        }else {
-                            console.log(error)
-                            alert("예외가 발생하였습니다.")
-                        }
-                    })
+                        .then((res: {
+                            data: any; status: number; 
+                        }) => {
+                            sessionStorage.setItem('userId', res.data.id);
+                            sessionStorage.setItem('job', res.data.job);
+                            if (res.status == 200) {
+                                navigate("/")
+                                alert(res.data.message)
+                                if(res.data.job === 'student') {
+                                    navigate("/home")
+                                }
+                                else if(res.data.job === "teacher") {
+                                    navigate("/rentallist")
+                                }
+                            } else {
+                                //예외
+                                alert(res.data.message)
+                            }
+                        })
+                        .catch((error)=>{
+                            const res = error.response
+                            if (res.status === 400) {
+                                alert(res.data.error + res.data.errorDescription)
+                            }else if (res.status === 500) {
+                                alert("에러" + "로그인에 실패했습니다")
+                            }else {
+                                console.log(error)
+                                alert("예외가 발생하였습니다.")
+                            }
+                        })
+                } catch(error) {
+                    console.log('try문에서 에러', error)
+                }
                 console.log({form})
                 }}>
 
