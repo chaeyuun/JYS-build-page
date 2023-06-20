@@ -95,21 +95,7 @@ const Rental = () => {
         <_Writewrap 
             onSubmit={(event: any) => {
                 event.preventDefault();
-                console.log({
-                    id: id,
-                    studentID: studentID,
-                    cart: cart,
-                    firstName: name.substring(0, 1),
-                    lastName: name.substring(1, 3),
-                    person: person,
-                    period1: period1,
-                    period2: period2,
-                    meet1: meet1,
-                    meet2: meet2,
-                    phonenum: phonenum,
-                    purpose: purpose
-                }
-                )
+                
                 axios.post("", {
                     id: id,
                     studentID: studentID,
@@ -388,9 +374,12 @@ const _Subtext = styled.div`
 
 
 //추가하기
-const _Addbtn = styled.button`
+const _Addbtn = styled.span`
     width: 100px;
     height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     border-radius: 5px;
     background-color: #1E00D3;
