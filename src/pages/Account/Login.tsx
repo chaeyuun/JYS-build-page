@@ -78,15 +78,22 @@ const UserLogin = () => {
                             else if(res.data.job === "teacher") {
                                 navigate("/rentallist")
                             }
-                        } else if (res.status == 202) {
-                            //경고 => 메시지 res.data.message
-                            alert(res.data.message)
                         } else {
                             //예외
                             alert(res.data.message)
                         }
                     })
-                    .catch(()=>{alert("아이디 비번이 틀렸습니다")})
+                    .catch((error)=>{
+                        const res = error.response
+                        if (res.status === 400) {
+                            alert(res.data.error + res.data.errorDescription)
+                        }else if (res.status === 500) {
+                            alert("에러" + "로그인에 실패했습니다")
+                        }else {
+                            console.log(error)
+                            alert("예외가 발생하였습니다.")
+                        }
+                    })
                 console.log({form})
                 }}>
 
