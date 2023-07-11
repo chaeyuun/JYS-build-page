@@ -60,7 +60,7 @@ const UserLogin = () => {
                 });
 
                 try {
-                    axios.post("http://www.zena.co.kr/api/login", {
+                    axios.post("https://www.zena.co.kr/api/login", {
                         accountID : inputId,
                         password : inputPw,
                         job : job

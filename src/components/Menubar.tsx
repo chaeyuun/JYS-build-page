@@ -76,7 +76,7 @@ const ResponsiveNavbar = () => {
     } else {
     return (
         <Navbar>
-        <Logo src="./YSIT.logo.png" alt="logo"/>
+        <Logo src="http://chaeyuun.github.io/JYS-build-page/YSIT.logo.png" alt="logo"/>
         <Menu>
             <MenuItemWrapper>
             

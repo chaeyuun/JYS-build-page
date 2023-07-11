@@ -13,10 +13,12 @@ import Test from './pages/Test'
 import AddCamera from './pages/Equipment/AddCamera'
 import Notlogin from './pages/Notlogin'
 import RentalStatus from './pages/Equipment/RentalStatus'
+import styled from 'styled-components';
 
 
 function App() {
   return (
+    <Appwrap>
     <Router basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path="/home" element={<UserHome />} />
@@ -34,7 +36,12 @@ function App() {
       <Route path="/status" element={<RentalStatus />} />
     </Routes>
     </Router>
+    </Appwrap>
   );
 }
 
 export default App;
+
+const Appwrap = styled.div`
+  
+`
